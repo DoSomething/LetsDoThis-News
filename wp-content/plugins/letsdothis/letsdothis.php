@@ -16,4 +16,6 @@ function letsdothis_allow_origin() {
 }
 add_action( 'init', 'letsdothis_allow_origin' );
 
+remove_post_type_support( 'post', 'editor' );
+
 ?>
