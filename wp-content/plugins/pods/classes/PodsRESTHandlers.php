@@ -56,11 +56,6 @@ class PodsRESTHandlers {
 	public static function get_handler( $object, $field_name, $request ) {
 
 		$pod_name = pods_v( 'type', $object );
-		// HACKING SOURCE @see: https://github.com/pods-framework/pods/pull/3369
-		// if $pod_name is empty then the route invoked is for a taxonomy, so act accordingly.
-		if( empty( $pod_name ) ) {
-			$pod_name = pods_v( 'taxonomy', $object );
-		}
 		$id       = pods_v( 'id', $object );
 		$pod      = self::get_pod( $pod_name, $id );
 		if ( $pod && PodsRESTFields::field_allowed_to_extend( $field_name, $pod, 'read' ) ) {
