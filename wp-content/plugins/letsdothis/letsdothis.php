@@ -70,6 +70,9 @@ function ldt_add_custom_field_as_property(&$post, $field_name) {
   $post->{$field_name} = "";
   if (!empty($post->custom_fields->{$field_name})) {
     $post->{$field_name} = $post->custom_fields->{$field_name}[0];
+    if ($field_name === 'campaign_id') {
+      $post->campaign_id = intval($post->campaign_id);
+    }
   };
 }
 
@@ -80,6 +83,7 @@ function ldt_encode_category(&$category, $view_mode = 'teaser') {
 
   $pod = pods('category');
   $pod->fetch($category->id);
+  $category->phoenix_id = intval($pod->get_field('phoenix_term_id'));
   $category->hex = $pod->get_field('hex');
   if ($view_mode === 'teaser') {
   	return;
