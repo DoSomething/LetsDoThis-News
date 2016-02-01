@@ -68,7 +68,7 @@ class JSON_API_Introspector {
   }
   
   public function get_categories($args = null) {
-    $wp_categories = get_categories($args);
+    $wp_categories = get_categories(array('hide_empty' => 0));
     $categories = array();
     foreach ($wp_categories as $wp_category) {
       if ($wp_category->term_id == 1 && $wp_category->slug == 'uncategorized') {
