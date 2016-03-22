@@ -52,8 +52,13 @@ function ldt_encode_post(&$post) {
   unset($post->type);
 
   $post->image_url = "";
-  if (!empty($post->attachments)) {
-    $post->image_url = $post->attachments[0]->url;
+  if (!empty($post->custom_fields->photo)) {
+    $selected_attachment_id = $post->custom_fields->photo[0];
+    foreach ($post->attachments as $attachment) {
+      if ($attachment->id == $selected_attachment_id) {
+        $post->image_url = $attachment->url;
+      }
+    }
   }
 
   $custom_fields = ['campaign_id', 'full_article_url', 'photo_credit', 'summary_1', 'summary_2', 'summary_3'];
