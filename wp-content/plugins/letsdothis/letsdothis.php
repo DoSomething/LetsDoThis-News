@@ -56,7 +56,7 @@ function ldt_encode_post(&$post) {
     $selected_attachment_id = $post->custom_fields->photo[0];
     foreach ($post->attachments as $attachment) {
       if ($attachment->id == $selected_attachment_id) {
-        $post->image_url = $attachment->url;
+        $post->image_url = $attachment->images["medium_large"]->url;
       }
     }
   }
