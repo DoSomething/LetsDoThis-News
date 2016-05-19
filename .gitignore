@@ -53,3 +53,7 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# Kalabox
+.stfolder
+.stignore
